@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Metrics Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 p-12">
+<main class="flex-1 bg-gray-50 p-4"> 
+    <div class="border-4 border-dashed border-gray-300 rounded-lg h-full p-5">
+        <div class=" mx-auto mt-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <!-- Card for Total Records -->
+            <div class="bg-white p-10 rounded-2xl shadow-xl text-center">
+            <h2 class="text-xl font-semibold text-gray-700">Total Records</h2>
+            <p class="text-3xl font-bold text-gray-700">{{ total_records }}</p>
+            </div>
+        <!-- Card for Today's Blood Pressure -->
+            <div class="bg-white p-10 rounded-2xl shadow-xl text-center">
+            <h2 class="text-xl font-semibold text-gray-700">Today's BP</h2>
+            <p class="text-3xl font-bold text-blue-500">{{latest_systolic }}/{{ latest_diastolic }} mmHg</p>
+            </div>
+        
+        <!-- Card for Average Blood Pressure -->
+            <div class="bg-white p-10 rounded-2xl shadow-xl text-center">
+            <h2 class="text-xl font-semibold text-gray-700">Average BP</h2>
+            <p class="text-3xl font-bold text-green-500">{{avg_systolic}}/{{avg_diastolic}} mmHg</p>
+            </div>
+        <!-- Card for Today Heartbeat -->
+            <div class="bg-white p-10 rounded-2xl shadow-xl text-center">
+            <h2 class="text-xl font-semibold text-gray-700">Today's Sugar Fasting</h2>
+            <p class="text-3xl font-bold text-gray-700">{{ latest_fasting_sugar if latest_fasting_sugar else 'N/A' }}mg/dl</p>
+            </div>       
+        <!-- Card for Today's Sugar Level -->
+            <div class="bg-white p-10 rounded-2xl shadow-xl text-center">
+            <h2 class="text-xl font-semibold text-gray-700">Today's Sugar Bedtime</h2>
+            <p class="text-3xl font-bold text-red-500">{{latest_bedtime_sugar if latest_bedtime_sugar else 'N/A' }}mg/dL</p>
+            </div>        
+        <!-- Card for Average Sugar Level -->
+            <div class="bg-white p-10 rounded-2xl shadow-xl text-center">
+            <h2 class="text-xl font-semibold text-gray-700">Average Sugar</h2>
+            <p class="text-3xl font-bold text-purple-500">{{avg_sugar if avg_sugar else 'N/A' }}mg/dL</p>
+            </div>
+        
+        
+        </div>
+        <div>
+            <h3 class="text-red-500 mt-5">Important Links</h3>
+            <ul>
+                <li><a href="/bpchart " target="_blank" class="text-blue-500 hover:text-blue-700 ">Blood Presure Chart
+            </ul>    
+        </div>
+    </div>
+    
+</main>  
+</body>
+</html>

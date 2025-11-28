@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>AyuCare : Record</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+    
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    </head>
+<body class="bg-gray-100">
+
+    <!-- Sidebar -->
+    <div class="flex h-auto" >
+        {% include 'record-sidebar.html' %}
+
+        <!-- Main content -->
+
+        
+        <div class="flex-1 min-h-screen flex flex-col">
+            {% include 'record_topbar.html' %}
+            <main class="flex-1 bg-gray-50 p-4">
+                <div class="border-4 border-dashed border-gray-300 rounded-lg min-h-screen  ">
+                    {% include 'bp_form.html' %}
+
+
+                </div>
+            </main>        
+
+    
+        </div>
+
+    <div>
+        
+    </div>
+
+    </div>
+</body>
+</html>

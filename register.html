@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+   
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Define shake animation */
+        @keyframes shake {
+          0%, 100% {
+            transform: translateX(0);
+          }
+          10%, 30%, 50%, 70%, 90% {
+            transform: translateX(-5px);
+          }
+          20%, 40%, 60%, 80% {
+            transform: translateX(5px);
+          }
+        }
+    
+        /* Add animation to Tailwind */
+        .shake {
+          animation: shake 0.9s ease-in-out infinite;
+        }
+    </style>
+   
+    <script>
+        function toggleServiceDropdown() {
+            const serviceDropdown = document.getElementById('service-dropdown');
+            serviceDropdown.classList.toggle('hidden');
+        }
+        
+        // Close the dropdown when clicking outside of it
+        window.addEventListener('click', (event) => {
+            const serviceButton = document.getElementById('service-button');
+            const serviceDropdown = document.getElementById('service-dropdown');
+        
+            if (!serviceButton.contains(event.target) && !serviceDropdown.contains(event.target)) {
+                serviceDropdown.classList.add('hidden');
+            }
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            // Function to toggle the notification dropdown
+            function toggleDropdown() {
+                const notificationDropdown = document.getElementById('notificationDropdown');
+                notificationDropdown.classList.toggle('hidden');
+            }
+        
+            // Close the dropdown when clicking outside of it
+            window.addEventListener('click', (event) => {
+                const notificationButton = document.getElementById('notificationButton');
+                const notificationDropdown = document.getElementById('notificationDropdown');
+        
+                if (!notificationButton.contains(event.target) && !notificationDropdown.contains(event.target)) {
+                    notificationDropdown.classList.add('hidden');
+                }
+            });
+        
+            // Attach click event to the button
+            document.getElementById('notificationButton').addEventListener('click', toggleDropdown);
+        });
+        </script>
+</head>
+<body class="bg-gray-100">
+    {% include 'navbar.html' %}
+    
+     {% include 'newregister.html' %}
+     {% if existing_user %}
+    <p class="text-red-600">Email {{ existing_user.email }} is already registered.</p>
+{% endif %}
+
+
+</body>
+</html>

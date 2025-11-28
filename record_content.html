@@ -1,0 +1,42 @@
+<main class="flex-1 bg-gray-50 p-4">
+  <div class="border-4 border-dashed border-gray-300 rounded-lg h-auto">
+      <div class="overflow-hidden bg-white  py-1 sm:py-4">
+          <div class="mx-auto  max-w-7xl px-6 lg:px-8">
+            <div class="  mx-auto grid max-w-2xl grid-cols-1 gap-x-8 gap-y-16 sm:gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-2">
+              <div class="lg:pr-8 lg:pt-0 animate-fade-in-left"> <!-- Added animation class -->
+                <div class="lg:max-w-lg">
+                  <h2 class="text-base font-semibold leading-7 text-indigo-600">Secure Record Storage</h2>
+                  <p class="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">A better way to store your records.</p>
+
+                  <p class="mt-6 text-lg leading-8 text-gray-600">Ayucare ensures your health records are securely stored and easily accessible whenever you need them. Our AI-driven system organizes your medical data, allowing you to manage and retrieve important health information with just a few clicks. Your data is protected with top-tier security measures, ensuring privacy and peace of mind.</p>
+                  <dl class="mt-10 max-w-xl space-y-8 text-base leading-7 text-gray-600 lg:max-w-none">
+                    <div class="relative pl-9">
+                      <dt class="inline font-semibold text-gray-900">
+                        <!-- SVG remains the same -->
+                        Secure Record Storage. 
+                      </dt>
+                      <dd class="inline">Your medical data is stored securely, ensuring that it’s accessible only to you and authorized personnel.</dd>
+                    </div>
+                    <div class="relative pl-9">
+                      <dt class="inline font-semibold text-gray-900">
+                        AI-Powered Organization. 
+                      </dt>
+                      <dd class="inline">Ayucare’s AI effortlessly organizes your health records, streamlining access to essential information whenever needed.</dd>
+                    </div>
+                    <div class="relative pl-9">
+                      <dt class="inline font-semibold text-gray-900">
+                        Database backups.
+                      </dt>
+                      <dd class="inline">Your data is continuously backed up, providing peace of mind that your health history is safe and retrievable at any time.</dd>
+                    </div>
+                  </dl>
+                </div>
+              </div>
+              <img src="{{url_for ('static', filename='img/recordpage.png')}}" alt="Product screenshot" class="w-full h-auto object-cover max-w-none rounded-xl shadow-xl ring-1 ring-gray-400/10 animate-fade-in-right mt-16">
+
+            </div>
+          </div>
+        </div>
+        
+  </div>
+</main>

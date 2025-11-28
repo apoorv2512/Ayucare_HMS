@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Pressure Chart</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white shadow-2xl rounded-2xl p-8 w-full max-w-2xl">
+        <h2 class="text-2xl font-bold text-center text-gray-700 mb-6">Blood Pressure Categories</h2>
+        
+        <table class="w-full border-collapse border border-gray-300 text-gray-700">
+            <thead>
+                <tr class="bg-gray-200">
+                    <th class="border border-gray-300 p-3">Category</th>
+                    <th class="border border-gray-300 p-3">Systolic (mmHg)</th>
+                    <th class="border border-gray-300 p-3">Diastolic (mmHg)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-green-100">
+                    <td class="border border-gray-300 p-3 font-semibold">Normal</td>
+                    <td class="border border-gray-300 p-3">&lt; 120</td>
+                    <td class="border border-gray-300 p-3">&lt; 80</td>
+                </tr>
+                <tr class="bg-yellow-100">
+                    <td class="border border-gray-300 p-3 font-semibold">Elevated</td>
+                    <td class="border border-gray-300 p-3">120 - 129</td>
+                    <td class="border border-gray-300 p-3">&lt; 80</td>
+                </tr>
+                <tr class="bg-orange-200">
+                    <td class="border border-gray-300 p-3 font-semibold">Hypertension Stage 1</td>
+                    <td class="border border-gray-300 p-3">130 - 139</td>
+                    <td class="border border-gray-300 p-3">80 - 89</td>
+                </tr>
+                <tr class="bg-red-200">
+                    <td class="border border-gray-300 p-3 font-semibold">Hypertension Stage 2</td>
+                    <td class="border border-gray-300 p-3">≥ 140</td>
+                    <td class="border border-gray-300 p-3">≥ 90</td>
+                </tr>
+                <tr class="bg-red-500 text-white">
+                    <td class="border border-gray-300 p-3 font-semibold">Hypertensive Crisis (Emergency)</td>
+                    <td class="border border-gray-300 p-3 font-bold">> 180</td>
+                    <td class="border border-gray-300 p-3 font-bold">> 120</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>

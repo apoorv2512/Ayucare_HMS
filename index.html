@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AyuCare:Home</title>
+    <meta name="description" content="A brief description of your website.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+    /* Define shake animation */
+    @keyframes shake {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+      }
+      20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+      }
+    }
+
+    /* Add animation to Tailwind */
+    .shake {
+      animation: shake 0.9s ease-in-out infinite;
+    }
+</style>
+ 
+<script>
+    function toggleServiceDropdown() {
+        const serviceDropdown = document.getElementById('service-dropdown');
+        serviceDropdown.classList.toggle('hidden');
+    }
+    
+    // Close the dropdown when clicking outside of it
+    window.addEventListener('click', (event) => {
+        const serviceButton = document.getElementById('service-button');
+        const serviceDropdown = document.getElementById('service-dropdown');
+    
+        if (!serviceButton.contains(event.target) && !serviceDropdown.contains(event.target)) {
+            serviceDropdown.classList.add('hidden');
+        }
+    });
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        // Function to toggle the notification dropdown
+        function toggleDropdown() {
+            const notificationDropdown = document.getElementById('notificationDropdown');
+            notificationDropdown.classList.toggle('hidden');
+        }
+    
+        // Close the dropdown when clicking outside of it
+        window.addEventListener('click', (event) => {
+            const notificationButton = document.getElementById('notificationButton');
+            const notificationDropdown = document.getElementById('notificationDropdown');
+    
+            if (!notificationButton.contains(event.target) && !notificationDropdown.contains(event.target)) {
+                notificationDropdown.classList.add('hidden');
+            }
+        });
+    
+        // Attach click event to the button
+        document.getElementById('notificationButton').addEventListener('click', toggleDropdown);
+    });
+    </script>
+    
+    
+</head>
+<body>
+<header>
+{% include 'navbar.html' %}
+
+</header>
+<!--Now creating the hero section-->
+{% include 'hero.html' %}
+<!--Now creating developer section -->  
+{% include 'devloper.html' %}
+<!-- creating footer-->
+{% include 'footer.html' %}
+<script src="{{ url_for('static', filename='js/profile.js') }}"></script>
+</body>
+</html>

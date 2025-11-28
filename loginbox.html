@@ -1,0 +1,60 @@
+<div class="min-h-screen flex flex-col items-center justify-center">
+    <div class="bg-white p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h2 class="text-2xl font-bold text-gray-800 mb-6 text-center">Sign In</h2>
+        
+        <form action="{{ url_for('signin') }}" method="POST">
+            <div class="mb-4">
+                <label for="identifier" class="block text-sm font-medium text-gray-700">Username</label>
+                <input type="text" id="identifier" name="identifier" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Enter your username">
+            </div>
+            
+            <div class="mb-4">
+                <label for="email" class="block text-sm font-medium text-gray-700">Email address</label>
+                <input type="email" id="email" name="email" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Enter your email">
+            </div>
+
+            <div class="mb-4">
+                <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                <input type="password" id="password" name="password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Enter your password">
+            </div>
+
+            <div class="flex items-center justify-between mb-4">
+                <div class="flex items-center">
+                    <input type="checkbox" id="remember-me" name="remember-me" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                    <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
+                </div>
+
+                <div class="text-sm">
+                    <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot password?</a>
+                </div>
+            </div>
+
+            <div>
+                <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-md shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Sign in</button>
+            </div>
+
+            <div class="mt-6 flex items-center justify-center">
+                <span class="text-gray-500 text-sm">Or continue with</span>
+            </div>
+
+            <div class="mt-4 flex justify-between">
+                
+                    <a href="{{ url_for('login') }}" class="w-full mr-2 bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md shadow-sm flex items-center justify-center hover:bg-gray-50">
+                        <img src="https://www.google.com/favicon.ico" alt="Google" class="h-5 w-5 mr-2">
+                        Google
+                    </a>
+               
+                
+
+                <button class="w-full ml-2 bg-white border border-gray-300 text-gray-700 py-2 px-4 rounded-md shadow-sm flex items-center justify-center hover:bg-gray-50">
+                    <img src="https://github.githubassets.com/favicons/favicon.png" alt="GitHub" class="h-5 w-5 mr-2">
+                    GitHub
+                </button>
+            </div>
+
+            <div class="mt-6 text-center">
+                <a href="/register" class="text-indigo-600 text-sm">Not a member? Register</a>
+            </div>
+        </form>
+    </div>
+</div>

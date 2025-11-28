@@ -1,0 +1,162 @@
+<div class="mx-auto bg-white p-6">
+    <div></div>
+    <form id="recordForm" action="/daily_record" method="POST" onsubmit="return validateForm()">
+        <div class="mb-4">
+            <label for="recordType" class="block text-gray-700 mb-1">Choose Reading Type</label>
+            <select id="recordType" name="record_type" onchange="toggleFields()" required
+                class="block w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 p-2">
+                <option value="">-- Select --</option>
+                <option value="bp">Blood Pressure</option>
+                <option value="sugar">Sugar</option>
+                <option value="weight">Weight & Height</option>
+                
+                
+            </select>
+        </div>
+
+        <!-- BP Fields -->
+        <div id="bpFields" class="hidden">
+            <div class="mb-4">
+                <label for="systolic" class="block text-gray-700 mb-1">Systolic</label>
+                <input type="number" id="systolic" name="systolic" required
+                    class="block w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 p-2">
+            </div>
+            <div class="mb-4">
+                <label for="diastolic" class="block text-gray-700 mb-1">Diastolic</label>
+                <input type="number" id="diastolic" name="diastolic" required
+                    class="block w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 p-2">
+            </div>
+        </div>
+
+        <!-- Sugar Fields -->
+        <div class="mb-4">
+        <div id="sugarFields" class="hidden">
+            <div class="mb-4">
+                <label for="fasting_sugar" class="block text-gray-700 mb-1">Fasting</label>
+                <input type="number" id="fasting_sugar" name="fasting_sugar"
+                    class="block w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 p-2">
+            </div>
+            <div class="mb-4">
+                <label for="bedtime_sugar" class="block text-gray-700 mb-1">Bedtime</label>
+                <input type="number" id="bedtime_sugar" name="bedtime_sugar"
+                    class="block w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 p-2">
+            </div>
+        </div>
+        <!-- Weight & Height Fields -->
+        <div class="mb-4">
+        <div id="weightFields" class="hidden">
+            <div class="mb-4">
+                <label for="weight" class="block text-gray-700 mb-1">Weight</label>
+                <input type="number" id="weight" name="weight"
+                    class="block w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 p-2">
+            </div>
+            <div class="mb-4">
+                <label for="height" class="block text-gray-700 mb-1">Height</label>
+                <input type="number" id="height" name="height"
+                    class="block w-full border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 p-2">
+            </div>
+        </div>
+        
+
+        <div class="flex justify-between mt-4">
+            <button type="submit"
+                class="w-48 bg-gray-500 text-white font-bold py-2 rounded-full hover:bg-gray-900 transition duration-200">Add Record</button>
+            <button type="reset"
+                class="w-48 bg-gray-800 text-white font-bold py-2 rounded-full hover:bg-gray-900 transition duration-200">Reset</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    function toggleFields() {
+    const recordType = document.getElementById('recordType').value;
+
+    // Toggle visibility
+    document.getElementById('bpFields').classList.toggle('hidden', recordType !== 'bp');
+    document.getElementById('sugarFields').classList.toggle('hidden', recordType !== 'sugar');
+    document.getElementById('weightFields').classList.toggle('hidden', recordType !== 'weight');
+
+    // Reset fields and validation
+    if (recordType === 'bp') {
+        document.getElementById('systolic').setAttribute('required', true);
+        document.getElementById('diastolic').setAttribute('required', true);
+        document.getElementById('fasting_sugar').removeAttribute('required');
+        document.getElementById('bedtime_sugar').removeAttribute('required');
+        document.getElementById('weight').removeAttribute('required');
+        document.getElementById('height').removeAttribute('required');
+    } else if (recordType === 'sugar') {
+        document.getElementById('fasting_sugar').setAttribute('required', true);
+        document.getElementById('bedtime_sugar').setAttribute('required', true);
+        document.getElementById('systolic').removeAttribute('required');
+        document.getElementById('diastolic').removeAttribute('required');
+        document.getElementById('weight').removeAttribute('required');
+        document.getElementById('height').removeAttribute('required');
+    } else if (recordType === 'weight') {
+        document.getElementById('weight').setAttribute('required', true);
+        document.getElementById('height').setAttribute('required', true);
+        document.getElementById('systolic').removeAttribute('required');
+        document.getElementById('diastolic').removeAttribute('required');
+        document.getElementById('fasting_sugar').removeAttribute('required');
+        document.getElementById('bedtime_sugar').removeAttribute('required');
+    }
+}
+
+
+    function validateForm() {
+    const recordType = document.getElementById('recordType').value;
+
+    if (recordType === 'bp') {
+        const systolic = document.getElementById('systolic');
+        const diastolic = document.getElementById('diastolic');
+
+        if (!systolic.value) {
+            alert("Please enter a valid Systolic value.");
+            systolic.focus();
+            return false;
+        }
+
+        if (!diastolic.value) {
+            alert("Please enter a valid Diastolic value.");
+            diastolic.focus();
+            return false;
+        }
+    }
+
+    if (recordType === 'sugar') {
+        const fastingSugar = document.getElementById('fasting_sugar');
+        const bedtimeSugar = document.getElementById('bedtime_sugar');
+
+        if (!fastingSugar.value) {
+            alert("Please enter a valid Fasting Sugar value.");
+            fastingSugar.focus();
+            return false;
+        }
+
+        if (!bedtimeSugar.value) {
+            alert("Please enter a valid Bedtime Sugar value.");
+            bedtimeSugar.focus();
+            return false;
+        }
+    }
+
+    if (recordType === 'weight') {
+        const weight = document.getElementById('weight');
+        const height = document.getElementById('height');
+
+        if (!weight.value) {
+            alert("Please enter your Weight.");
+            weight.focus();
+            return false;
+        }
+
+        if (!height.value) {
+            alert("Please enter your Height.");
+            height.focus();
+            return false;
+        }
+    }
+
+    return true; // All validations passed
+}
+
+</script>

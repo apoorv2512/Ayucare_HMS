@@ -1,0 +1,23 @@
+<div class="w-35 h-auto bg-gray-900 text-white flex flex-col">
+    <div class="p-4">
+        <img src="{{url_for ('static',filename='img/AyuCare.png')}}" alt="Logo" class="h-10 w-auto">
+    </div>
+    <nav class="mt-5 flex-1">
+        <a href="/home" class="flex items-center px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white">
+            <i class="fas fa-home"></i>
+            <span class="ml-2">Home</span>
+        </a>
+        <a href="/dashboard" id="navLink" href="#" class="flex items-center px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white">
+            <i id="navIcon" class="fas fa-heart"></i>
+            <span id="navText" class="ml-2">Dashboard</span>
+        </a>
+        
+        
+        
+        <a href="/daily_record" class="flex items-center px-4 py-2 text-gray-400 hover:bg-gray-700 hover:text-white">
+            <i class="fas fa-heart"></i>
+            <span class="ml-2">Daily Records</span>
+        </a>
+        
+    </nav>
+</div>

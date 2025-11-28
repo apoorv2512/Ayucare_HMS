@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>BMI Calculator</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+  <div class="container">
+    <h1>BMI Calculator with Vertex AI</h1>
+    <form method="post">
+      <label>Weight (kg):</label>
+      <input type="number" name="weight" step="0.1" required>
+      <label>Height (cm):</label>
+      <input type="number" name="height" step="0.1" required>
+      <button type="submit">Calculate</button>
+    </form>
+
+    {% if bmi %}
+      <div class="result">
+        <h2>Your BMI: {{ bmi }}</h2>
+        <p>Category: <strong>{{ category }}</strong></p>
+        <h3>Vertex AI Suggestion:</h3>
+        <p>{{ advice }}</p>
+      </div>
+    {% endif %}
+  </div>
+</body>
+</html>

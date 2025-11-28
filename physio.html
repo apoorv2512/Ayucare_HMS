@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AyuCare:PhysioTherapy Recomendation</title>
+    <meta name="description" content="A brief description of your website.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+    /* Define shake animation */
+    @keyframes shake {
+      0%, 100% {
+        transform: translateX(0);
+      }
+      10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+      }
+      20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+      }
+    }
+
+    /* Add animation to Tailwind */
+    .shake {
+      animation: shake 0.9s ease-in-out infinite;
+    }
+</style>
+ 
+<script>
+    function toggleServiceDropdown() {
+        const serviceDropdown = document.getElementById('service-dropdown');
+        serviceDropdown.classList.toggle('hidden');
+    }
+    
+    // Close the dropdown when clicking outside of it
+    window.addEventListener('click', (event) => {
+        const serviceButton = document.getElementById('service-button');
+        const serviceDropdown = document.getElementById('service-dropdown');
+    
+        if (!serviceButton.contains(event.target) && !serviceDropdown.contains(event.target)) {
+            serviceDropdown.classList.add('hidden');
+        }
+    });
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        // Function to toggle the notification dropdown
+        function toggleDropdown() {
+            const notificationDropdown = document.getElementById('notificationDropdown');
+            notificationDropdown.classList.toggle('hidden');
+        }
+    
+        // Close the dropdown when clicking outside of it
+        window.addEventListener('click', (event) => {
+            const notificationButton = document.getElementById('notificationButton');
+            const notificationDropdown = document.getElementById('notificationDropdown');
+    
+            if (!notificationButton.contains(event.target) && !notificationDropdown.contains(event.target)) {
+                notificationDropdown.classList.add('hidden');
+            }
+        });
+    
+        // Attach click event to the button
+        document.getElementById('notificationButton').addEventListener('click', toggleDropdown);
+    });
+    </script>
+    
+    
+</head>
+<body class="min-h-screen flex flex-col bg-gradient-to-r from-blue-100 to-white">
+    <header>
+        {% include 'navbar_home.html' %}
+    </header>
+    
+    <dd class="mt-4 my-4 text-center text-green text-blue-500 font-semibold text-4xl">KayaAI </dd>
+    <div class="container my-4 mt-4" >
+        <form action="/predict" method="post">
+            <div class="container">
+                <h2>Select Symptoms</h2>
+                <div class="form-group">
+                    <select class="form-control" id="symptoms-select" name="symptoms">
+                        <option value="" disabled selected>Select your symptom...</option>
+                        <option value="Swelling (arms/legs)">Swelling (arms/legs)</option>
+                        <option value="Heaviness or Tightness">Heaviness or Tightness</option>
+                        <option value="Restricted Range of Motion (ROM)">Restricted Range of Motion (ROM)</option>
+                        <option value="Pain">Pain</option>
+                        <option value="Discomfort">Discomfort</option>
+                        <option value="Bruising">Bruising</option>
+                        <option value="Joint Instability">Joint Instability</option>
+                        <option value="Muscle Weakness">Muscle Weakness</option>
+                        <option value="Difficulty Walking">Difficulty Walking</option>
+                        <option value="Frequent Falls">Frequent Falls</option>
+                        <option value="Trouble Breathing">Trouble Breathing</option>
+                        <option value="Heart Problems">Heart Problems</option>
+                        <option value="Stiffness">Stiffness</option>
+                        <option value="Muscle Spasms">Muscle Spasms</option>
+                        <option value="Sharp Pain">Sharp Pain</option>
+                        <option value="Dull Ache">Dull Ache</option>
+                        <option value="Difficulty Moving">Difficulty Moving</option>
+                        <option value="Reduced Flexibility">Reduced Flexibility</option>
+                        <option value="Difficulty in Moving Joints">Difficulty in Moving Joints</option>
+                        <option value="Bone Pain">Bone Pain</option>
+                        <option value="Fractures">Fractures</option>
+                        <option value="Loss of Height">Loss of Height</option>
+                        <option value="Stooped Posture">Stooped Posture</option>
+                        <option value="Back Pain">Back Pain</option>
+                        <option value="Dizziness">Dizziness</option>
+                        <option value="Spinning Sensation">Spinning Sensation</option>
+                        <option value="Loss of Balance">Loss of Balance</option>
+                        <option value="Nausea">Nausea</option>
+                        <option value="Vomiting">Vomiting</option>
+                        <option value="Throbbing Pain">Throbbing Pain</option>
+                        <option value="Pressure in the Head">Pressure in the Head</option>
+                        <option value="Sensitivity to Light">Sensitivity to Light</option>
+                        <option value="Sensitivity to Sound">Sensitivity to Sound</option>
+                        <option value="Tingling">Tingling</option>
+                        <option value="Numbness in Hands or Fingers">Numbness in Hands or Fingers</option>
+                        <option value="Weakness">Weakness</option>
+                        <option value="Pain in Hand/Wrist">Pain in Hand/Wrist</option>
+                        <option value="Extreme Fatigue">Extreme Fatigue</option>
+                        <option value="Unrefreshing Sleep">Unrefreshing Sleep</option>
+                        <option value="Muscle Pain">Muscle Pain</option>
+                        <option value="Joint Pain">Joint Pain</option>
+                        <option value="Sore Throat">Sore Throat</option>
+                        <option value="Chronic Cough">Chronic Cough</option>
+                        <option value="Shortness of Breath">Shortness of Breath</option>
+                        <option value="Wheezing">Wheezing</option>
+                        <option value="Fatigue">Fatigue</option>
+                        <option value="Chest Tightness">Chest Tightness</option>
+                        <option value="Redness">Redness</option>
+                        <option value="Blisters">Blisters</option>
+                        <option value="Peeling Skin">Peeling Skin</option>
+                        <option value="Joint Stiffness">Joint Stiffness</option>
+                        <option value="Limited Mobility">Limited Mobility</option>
+                        <option value="Tenderness">Tenderness</option>
+                        <option value="Tremors">Tremors</option>
+                        <option value="Stiff Muscles">Stiff Muscles</option>
+                        <option value="Slow Movements">Slow Movements</option>
+                        <option value="Balance Problems">Balance Problems</option>
+                        <option value="Speech Changes">Speech Changes</option>
+                        <option value="Involuntary Movements">Involuntary Movements</option>
+                        <option value="Memory Loss">Memory Loss</option>
+                        <option value="Depression">Depression</option>
+                        <option value="Mood Swings">Mood Swings</option>
+                        <option value="Instability">Instability</option>
+                        <option value="Difficulty Bearing Weight">Difficulty Bearing Weight</option>
+                        <option value="Popping Sound">Popping Sound</option>
+                        <option value="Urinary Incontinence">Urinary Incontinence</option>
+                        <option value="Pain in Pelvic Area">Pain in Pelvic Area</option>
+                        <option value="Pain during Intercourse">Pain during Intercourse</option>
+                        <option value="Constipation">Constipation</option>
+                        <option value="Muscle Spasms">Muscle Spasms</option>
+                        <option value="Unexplained Weight Loss">Unexplained Weight Loss</option>
+                        <option value="Skin Changes">Skin Changes</option>
+                        <option value="Lumps">Lumps</option>
+                        <option value="Conditions">Conditions</option>
+                    </select> 
+                </div>
+                <div class="form-group custom-symptoms">
+                    <label for="custom-symptoms">Selected Symptoms:</label>
+                    <input type="text" class="form-control" id="custom-symptoms" name="custom_symptoms">
+                </div>     
+                
+                
+                
+            </div>  
+            <script>
+                // Event listener for changes in the dropdown
+                document.getElementById('symptoms-select').addEventListener('change', function() {
+                    const selectedOptions = Array.from(this.selectedOptions).map(option => option.text);
+        
+                    // Get the existing text from the input field and split it into an array
+                    let existingText = document.getElementById('custom-symptoms').value;
+                    let existingSymptoms = existingText ? existingText.split(',').map(text => text.trim()) : [];
+        
+                    // Convert existing symptoms to a Set for easier manipulation
+                    let symptomsSet = new Set(existingSymptoms);
+        
+                    // Add new selections to the Set
+                    selectedOptions.forEach(option => symptomsSet.add(option));
+        
+                    // Update the input field with the new comma-separated string
+                    document.getElementById('custom-symptoms').value = Array.from(symptomsSet).join(', ');
+                });
+            </script>
+        
+           
+           
+             
+                
+                
+            
+        
+        
+        
+            
+            <br>
+            <button type="button" id="startSpeechRecognition" class="btn bg-gray-400 btn-primary" style="margin-left:3px;border:1px solid white; border-radius:20px;">
+                Start Speech Recognition
+            </button>
+            <br>
+    
+            <!-- Display the transcribed text here -->
+            <div name="mysysms" id="transcription"></div>
+            
+    
+            {% if message %}
+            <p>{{ message }}</p>
+            {% endif %}
+            {% if symptoms %}
+            <p>Entered Symptoms: {{ symptoms }}</p>
+            {% endif %}
+            <br>
+            
+           
+    
+            
+            <div class="flex justify-between mt-4">  
+                <button type="submit" class="btn bg-gray-900 text-white hover:bg-teal-400 " style="width:30%; padding: 14px; margin-bottom: 5px;">Predict</button>
+                <button type="reset" class="btn btn-secondary " style="width: 30%; padding: 14px; margin-bottom: 5px;">Reset</button>
+              </div>
+            
+        
+        </form>
+    
+    </div>
+    
+    
+    <!-- Results -->
+    <dd class="text-center text-4xl font-semibold my-4 mt-4">Our AI System Results</dd>
+    <div class="container">
+    
+        <div class="result-container rounded space-x-12 mb-4 text-black">
+            <!-- Buttons to toggle display -->
+            <button class="toggle-button rounded w-40 h-10 bg-teal-400" data-bs-toggle="modal" data-bs-target="#diseaseModal" >Disease</button>
+            <button class="toggle-button rounded w-40 h-10 bg-teal-400" data-bs-toggle="modal" data-bs-target="#descriptionModal" >Description</button>
+            <button class="toggle-button rounded w-40 h-10 bg-teal-400" data-bs-toggle="modal" data-bs-target="#precautionModal" >Precaution</button>
+            <button class="toggle-button rounded w-40 h-10 bg-teal-400" data-bs-toggle="modal" data-bs-target="#medicationsModal" >Treatment</button>
+            <button class="toggle-button rounded w-40 h-10 bg-teal-400" data-bs-toggle="modal" data-bs-target="#workoutsModal" >Workouts</button>
+            <button class="toggle-button rounded w-40 h-10 bg-teal-400"data-bs-toggle="modal" data-bs-target="#dietsModal" >Diets</button>
+        </div>
+    </div>
+    
+    
+    
+    <!-- Disease Modal -->
+        <div class="modal fade" id="diseaseModal" tabindex="-1" aria-labelledby="diseaseModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #020606; color:white;"> <!-- Set header background color inline -->
+                        <h5 class="modal-title" id="diseaseModalLabel">Predicted Disease</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body;"> <!-- Set modal body background color inline -->
+                        <p>{{ predicted_disease }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+        <!-- Description Modal -->
+        <div class="modal fade" id="descriptionModal" tabindex="-1" aria-labelledby="descriptionModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #020606; color:white;">
+                        <h5 class="modal-title" id="descriptionModalLabel">Description</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p>{{ dis_des }}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    <!-- Precaution Modal -->
+        <div class="modal fade" id="precautionModal" tabindex="-1" aria-labelledby="precautionModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #020606; color:white;">
+                        <h5 class="modal-title" id="precautionModalLabel">Precaution</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            {% for i in my_precautions %}
+                                <li>{{ i }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+    
+    
+        <!-- Medications Modal -->
+        <div class="modal fade" id="medicationsModal" tabindex="-1" aria-labelledby="medicationsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #020606; color:white;">
+                        <h5 class="modal-title" id="medicationsModalLabel">Treatment</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            {% for i in treatment %}
+                                <li>{{ i }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Workouts Modal -->
+        <div class="modal fade" id="workoutsModal" tabindex="-1" aria-labelledby="workoutsModalLabel" aria-hidden="true">
+            <div class="modal-dialog" >
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #020606; color:white;">
+                        <h5 class="modal-title" id="workoutsModalLabel">Workouts</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            {% for i in workout %}
+                                <li>{{ i }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Diets Modal -->
+        <div class="modal fade" id="dietsModal" tabindex="-1" aria-labelledby="dietsModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header" style="background-color: #020606; color:white;">
+                        <h5 class="modal-title" id="dietsModalLabel">Diets</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <ul>
+                            {% for i in my_diet %}
+                                <li>{{ i }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+    
+    
+            <script>
+        const startSpeechRecognitionButton = document.getElementById('startSpeechRecognition');
+        const transcriptionDiv = document.getElementById('transcription');
+    
+        startSpeechRecognitionButton.addEventListener('click', startSpeechRecognition);
+    
+        function startSpeechRecognition() {
+            const recognition = new webkitSpeechRecognition(); // Use webkitSpeechRecognition for compatibility
+    
+            recognition.lang = 'en-US'; // Set the language for recognition
+    
+            recognition.onresult = function (event) {
+                const result = event.results[0][0].transcript;
+                transcriptionDiv.textContent = result;
+            };
+    
+            recognition.onend = function () {
+                console.log('Speech recognition ended.');
+            };
+    
+            recognition.start();
+        }
+    </script>
+    
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    
+</body>
+
+</html>

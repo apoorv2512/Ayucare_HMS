@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayucare Daily Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Tailwind CSS for styling -->
+  <script src="https://cdn.jsdelivr.net/npm/tailwindcss@3.0.0/dist/tailwind.min.js"></script>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    .card {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body class="bg-gray-100">
+
+  <div class="container">
+    <header class="mb-10">
+      <h1 class="text-3xl font-semibold text-center text-gray-800">{{ username }}</h1>
+    </header>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+      <!-- BP Chart Card -->
+      <div class="card">
+        <h2 class="text-2xl font-semibold mb-4 text-center text-gray-700">Blood Pressure Chart</h2>
+        <canvas id="bpChart" width="400" height="200"></canvas>
+      </div>
+
+      <!-- Sugar Chart Card -->
+      <div class="card">
+        <h2 class="text-2xl font-semibold mb-4 text-center text-gray-700">Sugar Level Chart</h2>
+        <canvas id="sugarChart" width="400" height="200"></canvas>
+      </div>
+    </div>
+
+    <footer class="mt-10 text-center text-gray-600">
+      <p>&copy; 2025 Ayucare. All rights reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    const labels = [{% for label in labels %}"{{ label }}"{% if not loop.last %}, {% endif %}{% endfor %}];
+    const systolic = [{% for val in systolic_data %}{{ val }}{% if not loop.last %}, {% endif %}{% endfor %}];
+    const diastolic = [{% for val in diastolic_data %}{{ val }}{% if not loop.last %}, {% endif %}{% endfor %}];
+    const fastingSugar = [{% for val in fasting_sugar_data %}{{ val }}{% if not loop.last %}, {% endif %}{% endfor %}];
+    const bedtimeSugar = [{% for val in bedtime_sugar_data %}{{ val }}{% if not loop.last %}, {% endif %}{% endfor %}];
+
+    // BP Chart
+    new Chart(document.getElementById('bpChart').getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Systolic',
+            data: systolic,
+            borderColor: 'red',
+            fill: false
+          },
+          {
+            label: 'Diastolic',
+            data: diastolic,
+            borderColor: 'blue',
+            fill: false
+          }
+        ]
+      }
+    });
+
+    // Sugar Chart
+    new Chart(document.getElementById('sugarChart').getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Fasting Sugar',
+            data: fastingSugar,
+            borderColor: 'green',
+            fill: false
+          },
+          {
+            label: 'Bedtime Sugar',
+            data: bedtimeSugar,
+            borderColor: 'purple',
+            fill: false
+          }
+        ]
+      }
+    });
+  </script>
+</body>
+</html>
