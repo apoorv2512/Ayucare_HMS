@@ -1,0 +1,130 @@
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/output.css') }}">
+npx tailwindcss -i ./static/src/input.css -o ./static/css/output.css --watch
+<nav class="bg-gray-800">
+        <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+            <div class="relative flex h-16 items-center justify-between">
+                <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                    <div class="flex flex-shrink-0 items-center">
+                        <img class="h-8 w-auto rounded-full " src="data:image/jpeg;base64,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" alt="AyuCare">
+                    </div>
+                    <div class="hidden sm:ml-6 sm:block">
+                        <div class="flex space-x-4">
+                            <a href="#" class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white" aria-current="page">Home</a>
+                            <a href="/dashboard" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Dashboard</a>
+                            <a href="#" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Records</a>
+                            
+                            <div class="flex items-center">
+                                <!-- Other nav links -->
+                                <div class="relative inline-block text-left">
+                                    <button id="service-button" class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white" aria-haspopup="true" aria-expanded="false" onclick="toggleServiceDropdown()">
+                                        Services
+                                        
+                                    </button>
+                                    <div id="service-dropdown" class="hidden absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                        <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="service-button">
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Service 1</a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Service 2</a>
+                                            <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Service 3</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <button class="shake bg-white-500 text-white font-bold py-2 px-4 rounded hover:text-red-600">
+                                New
+                              </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+                    <!-- Login and Sign Up buttons -->
+                    <a href="/signin" class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Sign in</a>
+                    
+                    <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+                      <div class="relative flex h-16 items-center justify-between">
+                          <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+                              <div class="flex flex-shrink-0 items-center">
+                                  
+                              </div>
+                              <!-- Notification Bell Icon -->
+                              <div class="ml-3 relative">
+                                  <button class="bg-gray-800 p-1 rounded-full text-gray-400 hover:text-white focus:outline-none"
+                                          id="notificationButton"
+                                          onclick="toggleDropdown()">
+                                      <span class="sr-only">View notifications</span>
+                                      <!-- Heroicon for Bell -->
+                                      <i class="fas fa-bell text-gray-400"></i>
+
+                                      
+                                  </button>
+                                  <!-- Notification Dropdown Menu -->
+                                  <div id="notificationDropdown" class="hidden origin-top-right absolute right-0 mt-2 w-48 rounded-md shadow-lg bg-white ring-1 ring-black ring-opacity-5 focus:outline-none">
+                                      <div class="py-1" role="menu" aria-orientation="vertical" aria-labelledby="notificationButton">
+                                          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Notification 1</a>
+                                          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Notification 2</a>
+                                          <a href="#" class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" role="menuitem">Notification 3</a>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                    <div class="relative ml-3">
+                        <div>
+                            <button type="button" class="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800" id="user-menu-button" aria-expanded="false" aria-haspopup="true">
+                                <span class="sr-only">Open user menu</span>
+                                <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="">
+                            </button>
+                        </div>
+                        <div id="user-menu" class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Your Profile</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Settings</a>
+                            <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1">Sign out</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sm:hidden" id="mobile-menu">
+            <div class="space-y-1 px-2 pb-3 pt-2">
+                <a href="#" class="block rounded-md bg-gray-900 px-3 py-2 text-base font-medium text-white" aria-current="page">Dashboard</a>
+                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Team</a>
+                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Projects</a>
+                <a href="#" class="block rounded-md px-3 py-2 text-base font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Calendar</a>
+            </div>
+        </div>
+    </nav>
+
+
+
+
+
+
+
+npx tailwindcss -i ./static/src/input.css -o ./static/css/output.css --watch
+
+    if 'user_id' not in session:  # Ensure user is logged in
+        return redirect(url_for('signin'))
+
+    user_id = session['user_id']  # Get the logged-in user's ID
+    user = User.query.get(user_id)  # Retrieve the user object to get the username
+
+    if request.method == "POST":
+        title = request.form['title']
+        reading = request.form['reading']
+        
+        try:
+            # Create a new health record associated with the current user
+            new_record = healthrecords(title=title, reading=int(reading), user_id=user_id)
+            # Add and commit the new record to the database
+            db.session.add(new_record)
+            db.session.commit()
+            flash('Record added successfully!')
+        except Exception as e:
+            db.session.rollback()  # Rollback in case of error
+            flash('Failed to add record: ' + str(e))
+
+        return redirect(url_for('records'))  # Redirect after submission
+
+    # Retrieve records belonging to the logged-in user
+    all_records = healthrecords.query.filter_by(user_id=user_id).all()
+    return render_template("records.html", records=all_records, username=user.username)

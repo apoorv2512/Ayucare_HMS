@@ -1,0 +1,221 @@
+# Physio API Endpoint for Machine Learning Model
+# This section defines the API endpoint for serving requests to the Physio machine learning model.
+# - Service Name: KayaAI
+# - Functionality: Accepts patient data, processes it, sends it to the model for physiotherapy-related prediction, 
+#   and returns the result as a response.
+
+# Load datasets
+precautions = pd.read_csv("dataset/physio/precautions.csv")
+workout = pd.read_csv("dataset/physio/workout.csv")
+description = pd.read_csv("dataset/physio/description_physo.csv")
+treatment = pd.read_csv('dataset/physio/treatments.csv')
+diets = pd.read_csv("dataset/physio/diets.csv")
+
+# Load the KNN model
+knn = pickle.load(open('model/knn.pxl', 'rb'))
+
+# Helper function to retrieve disease information
+def helper(dis):
+    # Check if the condition exists in each dataset
+    if dis not in description['Condition'].values:
+        raise ValueError(f"Condition '{dis}' not found in description data.")
+    
+    desc = description[description['Condition'] == dis]['Description'].values
+    desc = " ".join([w for w in desc])
+
+    if dis not in precautions['Condition'].values:
+        raise ValueError(f"Condition '{dis}' not found in precautions data.")
+    
+    pre = precautions[precautions['Condition'] == dis][['Precaution 1', 'Precaution 2', 'Precaution 3']].values
+    pre = [(row) for row in pre]
+
+    if dis not in treatment['Condition'].values:
+        raise ValueError(f"Condition '{dis}' not found in treatment data.")
+    
+    tre = treatment[treatment['Condition'] == dis][['Treatment 1', 'Treatment 2', 'Treatment 3', 'Treatment 4', 'Treatment 5']].values
+    tre = [(row) for row in tre]
+
+    if dis not in diets['Condition'].values:
+        raise ValueError(f"Condition '{dis}' not found in diets data.")
+    
+    die = diets[diets['Condition'] == dis][['Diet 1', 'Diet 2', 'Diet 3']].values
+    die = [(row) for row in die]
+
+    if dis not in workout['Condition'].values:
+        raise ValueError(f"Condition '{dis}' not found in workout data.")
+    
+    wrkout = workout[workout['Condition'] == dis][['Exercise 1', 'Exercise 2', 'Exercise 3', 'Exercise 4', 'Exercise 5']].values
+    wrkout = [(row) for row in wrkout]
+
+    return desc, pre, tre, die, wrkout
+
+# Symptoms dictionary (keys in lowercase)
+symptoms_dict = {
+    'swelling (arms/legs)': 0,
+    'heaviness or tightness': 1,
+    'restricted range of motion (rom)': 2,
+    'pain': 3,
+    'discomfort': 4,
+    'swelling': 5,
+    'bruising': 6,
+    'joint instability': 7,
+    'muscle weakness': 8,
+    'difficulty walking': 9,
+    'frequent falls': 10,
+    'trouble breathing': 11,
+    'heart problems': 12,
+    'stiffness': 13,
+    'muscle spasms': 14,
+    'sharp pain': 15,
+    'dull ache': 16,
+    'difficulty moving': 17,
+    'reduced flexibility': 18,
+    'difficulty in moving joints': 19,
+    'bone pain': 20,
+    'fractures': 21,
+    'loss of height': 22,
+    'stooped posture': 23,
+    'back pain': 24,
+    'dizziness': 25,
+    'spinning sensation': 26,
+    'loss of balance': 27,
+    'nausea': 28,
+    'vomiting': 29,
+    'throbbing pain': 30,
+    'pressure in the head': 31,
+    'sensitivity to light': 32,
+    'sensitivity to sound': 33,
+    'tingling': 34,
+    'numbness in hands or fingers': 35,
+    'weakness': 36,
+    'pain in hand/wrist': 37,
+    'extreme fatigue': 38,
+    'unrefreshing sleep': 39,
+    'muscle pain': 40,
+    'joint pain': 41,
+    'sore throat': 42,
+    'chronic cough': 43,
+    'shortness of breath': 44,
+    'wheezing': 45,
+    'fatigue': 46,
+    'chest tightness': 47,
+    'redness': 48,
+    'blisters': 49,
+    'peeling skin': 50,
+    'joint stiffness': 51,
+    'limited mobility': 52,
+    'tenderness': 53,
+    'tremors': 54,
+    'stiff muscles': 55,
+    'slow movements': 56,
+    'balance problems': 57,
+    'speech changes': 58,
+    'involuntary movements': 59,
+    'memory loss': 60,
+    'depression': 61,
+    'mood swings': 62,
+    'instability': 63,
+    'difficulty bearing weight': 64,
+    'popping sound': 65,
+    'urinary incontinence': 66,
+    'pain in pelvic area': 67,
+    'pain during intercourse': 68,
+    'constipation': 69,
+    'muscle spasms': 70,
+    'unexplained weight loss': 71,
+    'skin changes': 72,
+    'lumps': 73,
+    'conditions': 74
+}
+
+# Diseases list
+diseases_list = {
+    11: 'Lymphedema',
+    18: 'Sport Injuries',
+    12: 'Muscular Dystrophy',
+    1: 'Back and Neck Pain',
+    16: 'Range of Motion (ROM)',
+    13: 'Osteoporosis',
+    19: 'Vertigo',
+    7: 'Headache',
+    4: 'Carpal Tunnel Syndrome',
+    5: 'Chronic Fatigue Syndrome',
+    17: 'Respiratory Issues (Chronic Bronchitis)',
+    2: 'Burns',
+    9: 'Joint Replacement',
+    0: 'Ankle Sprain',
+    14: 'Parkinsons Disease (Paralysis)',
+    6: 'Foot Fracture',
+    8: 'Huntingtons Disease',
+    10: 'Knee Ligament Injuries',
+    15: 'Pelvic Floor Dysfunction',
+    3: 'Cancer'
+}
+
+# Predict disease based on symptoms
+def get_predicted_value(patient_symptoms):
+    input_vector = np.zeros(len(symptoms_dict))
+    for item in patient_symptoms:
+        if item in symptoms_dict:
+            input_vector[symptoms_dict[item]] = 1
+    
+    print(f"Input vector for prediction: {input_vector}")  # Debugging output
+    
+    predicted_index = knn.predict([input_vector])[0]
+    return diseases_list[predicted_index]
+
+
+
+
+@app.route('/physio', methods=['GET','POST'])
+def physio():
+    if request.method == 'POST':
+        symptoms = request.form.get('custom_symptoms')
+
+        # Check if symptoms are provided and not just whitespace
+        if symptoms and symptoms.strip():
+            print(f"Received symptoms: {symptoms}")  # Debugging output
+
+            # Process and clean the input symptoms (split by comma and strip spaces)
+            user_symptoms = [s.strip().lower() for s in symptoms.split(',') if s.strip()]
+            print(f"Processed symptoms: {user_symptoms}")  # Debugging output
+
+            # Check if all user symptoms are valid
+            invalid_symptoms = [s for s in user_symptoms if s not in symptoms_dict]
+            print(f"Invalid symptoms: {invalid_symptoms}")  # Debugging output
+            
+            if invalid_symptoms:
+                # Return an error message for invalid symptoms
+                message = f"Some symptoms you entered are invalid or misspelled: {', '.join(invalid_symptoms)}. Please check and try again."
+                return render_template('physio.html', message=message, symptoms=symptoms)
+
+            # Try to predict the disease and retrieve additional information
+            try:
+                predicted_disease = get_predicted_value(user_symptoms)
+                dis_des, precautions, treatment, rec_diet, workout = helper(predicted_disease)
+
+                # Prepare a list of precautions to pass to the template
+                my_precautions = [precaution for precaution in precautions[0]]
+
+                # Render the result template with disease information
+                return render_template(
+                    'physio.html', 
+                    predicted_disease=predicted_disease, 
+                    dis_des=dis_des,
+                    my_precautions=my_precautions, 
+                    treatment=treatment, 
+                    my_diet=rec_diet,
+                    workout=workout
+                )
+            except Exception as e:
+                print(f"Error during prediction: {e}")
+                message = "There was an error processing your symptoms. Please try again later."
+                return render_template('physio.html', message=message, symptoms=symptoms)
+
+        else:
+            # If symptoms are not provided or invalid
+            message = "Please enter valid symptoms."
+            return render_template('physio.html', message=message, symptoms=symptoms)
+
+    # Render the form template if the request method is not POST
+    return render_template('physio.html')

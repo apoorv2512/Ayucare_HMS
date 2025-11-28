@@ -1,0 +1,96 @@
+Disease,0
+"['Infection/Inflammation', 'Possible Leukemia']",63
+"['Infection/Inflammation', 'Bacterial Infection or Stress']",61
+"['Infection/Inflammation', 'Viral Infection']",64
+"['Infection/Inflammation', 'Allergy or Parasitic Infection']",60
+"['Infection/Inflammation', 'Chronic Inflammation or Infection Recovery']",62
+"['Bacterial Infection or Stress', 'Anemia']",30
+['Bacterial Infection or Stress'],40
+"['Bacterial Infection or Stress', 'Chronic Inflammation or Infection Recovery']",31
+"['Chronic Inflammation or Infection Recovery', 'Dehydration or Polycythemia']",45
+"['Viral Infection', 'Iron Deficiency']",86
+"['Viral Infection', 'Chronic Inflammation or Infection Recovery']",83
+"['Viral Infection', 'Vitamin B12 Deficiency']",90
+"['Viral Infection', 'Dehydration or Polycythemia']",84
+"['Chronic Inflammation or Infection Recovery', 'Allergy or Parasitic Infection']",42
+['Viral Infection'],91
+"['Bacterial Infection or Stress', 'Vitamin B12 Deficiency']",39
+['Chronic Inflammation or Infection Recovery'],52
+['Vitamin B12 Deficiency'],93
+"['Viral Infection', 'Thrombocytosis (Inflammation, Iron Deficiency)']",89
+"['Bacterial Infection or Stress', 'Anemia or Fluid Overload']",29
+"['Bacterial Infection or Stress', 'Folate Deficiency']",33
+"['Bacterial Infection or Stress', 'Iron Deficiency']",34
+"['Bacterial Infection or Stress', 'Thrombocytosis (Inflammation, Iron Deficiency)']",37
+"['Bacterial Infection or Stress', 'Polycythemia (High RBC Production)']",35
+"['Bacterial Infection or Stress', 'Thrombocytopenia']",36
+['Allergy or Parasitic Infection'],13
+"['Polycythemia (High RBC Production)', 'Dehydration or Polycythemia']",68
+['Iron Deficiency'],67
+"['Chronic Inflammation or Infection Recovery', 'Thrombocytopenia']",49
+"['Chronic Inflammation or Infection Recovery', 'Vitamin B12 Deficiency']",51
+"['Chronic Inflammation or Infection Recovery', 'Iron Deficiency']",47
+"['Bacterial Infection or Stress', 'Allergic Reaction or Inflammation']",27
+"['Bacterial Infection or Stress', 'Allergy or Parasitic Infection']",28
+[],94
+"['Bacterial Infection or Stress', 'Dehydration or Polycythemia']",32
+"['Viral Infection', 'Anemia']",82
+"['Dehydration or Polycythemia', 'Vitamin B12 Deficiency']",57
+"['Anemia', 'Iron Deficiency']",22
+"['Viral Infection', 'Polycythemia (High RBC Production)']",87
+['Dehydration or Polycythemia'],58
+"['Chronic Inflammation or Infection Recovery', 'Folate Deficiency']",46
+['Folate Deficiency'],59
+"['Iron Deficiency', 'Vitamin B12 Deficiency']",66
+"['Thrombocytosis (Inflammation, Iron Deficiency)']",79
+"['Thrombocytopenia', 'Vitamin B12 Deficiency']",74
+"['Viral Infection', 'Allergy or Parasitic Infection']",80
+"['Viral Infection', 'Folate Deficiency']",85
+"['Dehydration or Polycythemia', 'Iron Deficiency']",54
+"['Chronic Inflammation or Infection Recovery', 'Anemia']",44
+"['Viral Infection', 'Thrombocytopenia']",88
+"['Anemia', 'Anemia or Fluid Overload']",20
+['Anemia or Fluid Overload'],19
+"['Chronic Inflammation or Infection Recovery', 'Polycythemia (High RBC Production)']",48
+['Polycythemia (High RBC Production)'],71
+"['Allergy or Parasitic Infection', 'Anemia']",5
+['Thrombocytopenia'],75
+"['Allergy or Parasitic Infection', 'Iron Deficiency']",8
+"['Anemia', 'Thrombocytosis (Inflammation, Iron Deficiency)']",24
+"['Thrombocytosis (Inflammation, Iron Deficiency)', 'Vitamin B12 Deficiency']",78
+"['Vitamin B12 Deficiency', 'Folate Deficiency']",92
+"['Dehydration or Polycythemia', 'Thrombocytosis (Inflammation, Iron Deficiency)']",56
+['Allergic Reaction or Inflammation'],2
+"['Allergy or Parasitic Infection', 'Vitamin B12 Deficiency']",12
+"['Allergy or Parasitic Infection', 'Polycythemia (High RBC Production)']",9
+"['Viral Infection', 'Anemia or Fluid Overload']",81
+"['Dehydration or Polycythemia', 'Thrombocytopenia']",55
+"['Thrombocytopenia', 'Iron Deficiency']",73
+"['Anemia or Fluid Overload', 'Vitamin B12 Deficiency']",18
+"['Chronic Inflammation or Infection Recovery', 'Anemia or Fluid Overload']",43
+"['Anemia', 'Vitamin B12 Deficiency']",25
+"['Thrombocytopenia', 'Folate Deficiency']",72
+"['Allergy or Parasitic Infection', 'Dehydration or Polycythemia']",6
+"['Allergy or Parasitic Infection', 'Thrombocytopenia']",10
+['Anemia'],26
+"['Thrombocytosis (Inflammation, Iron Deficiency)', 'Iron Deficiency']",77
+"['Dehydration or Polycythemia', 'Folate Deficiency']",53
+"['Allergy or Parasitic Infection', 'Folate Deficiency']",7
+"['Allergy or Parasitic Infection', 'Anemia or Fluid Overload']",4
+"['Anemia', 'Thrombocytopenia']",23
+"['Chronic Inflammation or Infection Recovery', 'Allergic Reaction or Inflammation']",41
+"['Iron Deficiency', 'Folate Deficiency']",65
+"['Anemia or Fluid Overload', 'Folate Deficiency']",14
+"['Chronic Inflammation or Infection Recovery', 'Thrombocytosis (Inflammation, Iron Deficiency)']",50
+"['Anemia or Fluid Overload', 'Thrombocytopenia']",16
+"['Thrombocytosis (Inflammation, Iron Deficiency)', 'Folate Deficiency']",76
+"['Polycythemia (High RBC Production)', 'Iron Deficiency']",69
+"['Polycythemia (High RBC Production)', 'Thrombocytopenia']",70
+"['Anemia or Fluid Overload', 'Thrombocytosis (Inflammation, Iron Deficiency)']",17
+"['Anemia or Fluid Overload', 'Iron Deficiency']",15
+"['Allergic Reaction or Inflammation', 'Iron Deficiency']",1
+"['Allergy or Parasitic Infection', 'Thrombocytosis (Inflammation, Iron Deficiency)']",11
+"['Anemia', 'Folate Deficiency']",21
+"['Allergic Reaction or Inflammation', 'Anemia']",0
+"['Allergy or Parasitic Infection', 'Allergic Reaction or Inflammation']",3
+"['Bacterial Infection or Stress', 'Viral Infection']",38
